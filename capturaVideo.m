@@ -3,14 +3,14 @@ clear all; close all; clc
 % set(vid,'ReturnedColorSpace','rgb');
 % preview(vid);
 % foto = getsnapshot(vid);
-% %foto2 =flip(foto,2);
-% imwrite(foto2,'myfoto2.png');
+% foto2 =flip(foto,2);
+% imwrite(foto2,'myfoto21.png');
 
 % set(vid,'returnedcolorspace','rgb');
 % set(vid,'FramesPerTrigger',Inf);
 % vid.FrameGrabInterval = 1;
 % start(vid);
-% 
+% 5
 % while(vid.FramesAcquired <= 10)
 %     geta=getsnapshot(vid);
 %     figure(1);imshow(geta);
@@ -47,37 +47,37 @@ clear all; close all; clc
 % im = uint8(im);
 % imshow([I,im]);
 
-cdt = imread('ej (2).jpg');
+cdt = imread('myfoto21.png');
 cdt2 = flip(cdt,2);
 % imgHSV = rgb2hsv(cdt2);
 % imshow(imgHSV(:,:,2));colormap('hsv');colorbar;
 % BW = imgHSV(:,:,2) < 0.50 | imgHSV(:,:,2) > .65;
-[BW,maskedRGBImage] = createMask(cdt2)
-imshow(BW);
+% [BW,maskedRGBImage] = createMask(cdt2)
+% imshow(BW);
 
 
+%Jefferson mascara
+cdt2= cdt;
+r = cdt(:,:,1);
+g = cdt(:,:,2);
+b = cdt(:,:,3);
+justBlue = b - r/2 - g/2;
+bw = justBlue > 33;
+cdt = bwareaopen(bw, 20);
+figure(1);imshow(cdt2);
 
-% cdt2= cdt;
-% r = cdt(:,:,1);
-% g = cdt(:,:,2);
-% b = cdt(:,:,3);
-% justBlue = b - r/2 - g/2;
-% bw = justBlue > 2.1;
-% cdt = bwareaopen(bw, 30);
-% 
-% figure(1);imshow(cdt);
 % 
 % Encuentra centroide.
-s  = regionprops(BW, {'centroid','area'});
-if isempty(s)
-  error('No ball found!');
-else
-  [~, id] = max([s.Area]);
-      %hold on,plot(s(id).Centroid(1),s(id).Centroid(2),'ro','MarkerFaceColor','r') , hold off
-     % disp(['Center location is (',num2str(s(id).Centroid(1),4),', ',num2str(s(id).Centroid(2),4),')'])
-
-     figure(3);imshow(cdt2); 
-   %hold on, plot(s(id).Centroid(1),s(id).Centroid(2),'ro','MarkerFaceColor','r'), hold off
+s  = regionprops(cdt, {'centroid','area'});
+% if isempty(s)
+%   error('No ball found!');
+% else
+   [~, id] = max([s.Area]);
+%     hold on,plot(s(id).Centroid(1),s(id).Centroid(2),'ro','MarkerFaceColor','r') , hold off
+%     %disp(['Center location is (',num2str(s(id).Centroid(1),4),', ',num2str(s(id).Centroid(2),4),')'])
+%     
+%     figure(3);imshow(cdt2);
+%     hold on, plot(s(id).Centroid(1),s(id).Centroid(2),'ro','MarkerFaceColor','r'), hold off
 
     %----------------SHOW GAME BALL
     % Length of rectangle edges.
@@ -98,7 +98,7 @@ else
 
     % Draw objects.
     r1 = rectangle('Position',vr,'EdgeColor','r','LineWidth',2);
- end
+%  end
 
 
 
