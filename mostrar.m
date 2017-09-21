@@ -35,9 +35,9 @@ while(vid.FramesAcquired <= 10000)
     end
     
     
-    %Máscara para reconocer objeto azul
-    cdt0 = getsnapshot(vid);%Capturamos la imagen de la cámara
-    cdt = flip(cdt0,2);%Aplicamos la función flip, que nos permite rotar la imagen y así evitar el efecto de espejo
+    %MÃ¡scara para reconocer objeto azul
+    cdt0 = getsnapshot(vid);%Capturamos la imagen de la cÃ¡mara
+    cdt = flip(cdt0,2);%Aplicamos la funciÃ³n flip, que nos permite rotar la imagen y asÃ­ evitar el efecto de espejo
     %[fil,col,cap]=size(cdt);
     cdt2 = cdt;
     r = cdt(:,:,1);%Obtenemos la capa que contiene el color rojo de la imagen
@@ -75,12 +75,12 @@ while(vid.FramesAcquired <= 10000)
         b8 = rectangle('Position',p8,'LineWidth',1,'FaceColor','g');
         end
     
-    s  = regionprops(cdt, {'centroid','area'});%Obtenemos las propiedades 'centroide' y 'área' de cada objeto que este blanco en BW 
+    s  = regionprops(cdt, {'centroid','area'});%Obtenemos las propiedades 'centroide' y 'Ã¡rea' de cada objeto que este blanco en BW 
     if isempty(s)
         
     else
         
-        [~, id] = max([s.Area]);  % Quiero que siga los objetos más de taltal y el
+        [~, id] = max([s.Area]);  % Quiero que siga los objetos mÃ¡s de taltal y el
         hold on
         
         % Game Ball.
@@ -94,7 +94,7 @@ while(vid.FramesAcquired <= 10000)
         r = rectangle('Position',p,'EdgeColor','b','LineWidth',2);
         %pause(4);
 
-        %¿Chocan?
+        %Â¿Chocan?
         area1 = bboxOverlapRatio(p,p1);
         area2 = bboxOverlapRatio(p,p2);
         area3 = bboxOverlapRatio(p,p3);
@@ -104,7 +104,7 @@ while(vid.FramesAcquired <= 10000)
         area7 = bboxOverlapRatio(p,p7);
         area8 = bboxOverlapRatio(p,p8);
         
-        %Para el juego si toca algún bloque
+        %Para el juego si toca algÃºn bloque
         if area1 > 0 ||  area2 > 0 || area3 > 0 || area4 > 0 || area5 > 0 || area6 > 0
             text(x,y,'GAME OVER','Color','r','FontSize', 40);
             break
@@ -128,7 +128,8 @@ while(vid.FramesAcquired <= 10000)
     else
         y2=y2+vel;
     end
-    %
+    
+    if(vid.FramesAcquired > 15)
     if y3>480
         y3=0;
         
@@ -166,7 +167,7 @@ while(vid.FramesAcquired <= 10000)
     else
         y8=y8+vel;
     end
-    
+    end
 end
 
 
